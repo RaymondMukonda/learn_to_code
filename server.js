@@ -60,7 +60,8 @@ app.get('/', (req, res) => {
     message: 'CRUD CSE341 API is running',
     database: 'crud-cse341',
     documentation: '/api-docs',
-    login: '/auth/github'
+    login: '/auth/github',
+    logout: '/auth/logout'
   });
 });
 
