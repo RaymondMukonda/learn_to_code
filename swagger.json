@@ -155,6 +155,81 @@
           }
         }
       }
+    },
+    "/subjects/{id}": {
+      "get": {
+        "summary": "Get subject by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subject found"
+          },
+          "404": {
+            "description": "Subject not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a subject (requires GitHub login)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Subject"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Subject updated"
+          },
+          "401": {
+            "description": "Authentication required"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a subject (requires GitHub login)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subject deleted"
+          },
+          "401": {
+            "description": "Authentication required"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -172,28 +247,37 @@
         ],
         "properties": {
           "firstName": {
-            "type": "string","example": "Raymond"
+            "type": "string",
+            "example": "Raymond"
           },
           "lastName": {
-            "type": "string","example": "Mukonda"
+            "type": "string",
+            "example": "Mukonda"
           },
           "studentNumber": {
-            "type": "string","example": "99"
+            "type": "string",
+            "example": "99"
           },
           "email": {
-            "type": "string","format": "email","example": "raymond@example.com"
+            "type": "string",
+            "format": "email",
+            "example": "raymond@example.com"
           },
           "age": {
-            "type": "integer","example": 22
+            "type": "integer",
+            "example": 22
           },
           "course": {
-            "type": "string","example": "Software Engineering"
+            "type": "string",
+            "example": "Software Engineering"
           },
           "yearLevel": {
-            "type": "integer","example": 3
+            "type": "integer",
+            "example": 3
           },
           "isRegistered": {
-            "type": "boolean","default": true
+            "type": "boolean",
+            "default": true
           }
         }
       },
@@ -208,22 +292,28 @@
         ],
         "properties": {
           "subjectCode": {
-            "type": "string","example": "CSE341"
+            "type": "string",
+            "example": "CSE341"
           },
           "subjectName": {
-            "type": "string","example": "Web Services Development"
+            "type": "string",
+            "example": "Web Services Development"
           },
           "credits": {
-            "type": "integer","example": 4
+            "type": "integer",
+            "example": 4
           },
           "department": {
-            "type": "string","example": "Software Engineering"
+            "type": "string",
+            "example": "Software Engineering"
           },
           "lecturer": {
-            "type": "string","example": "Mr. Daniel Khumalo"
+            "type": "string",
+            "example": "Mr. Daniel Khumalo"
           },
           "isActive": {
-            "type": "boolean","default": true
+            "type": "boolean",
+            "default": true
           }
         }
       }
