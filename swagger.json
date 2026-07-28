@@ -15,9 +15,20 @@
       "description": "Local development server"
     }
   ],
+  "tags": [
+    {
+      "name": "Students",
+      "description": "Operations related to students"
+    },
+    {
+      "name": "Subjects",
+      "description": "Operations related to subjects"
+    }
+  ],
   "paths": {
     "/students": {
       "get": {
+        "tags": ["Students"],
         "summary": "Get all students",
         "responses": {
           "200": {
@@ -26,6 +37,7 @@
         }
       },
       "post": {
+        "tags": ["Students"],
         "summary": "Create a student (requires GitHub login)",
         "requestBody": {
           "required": true,
@@ -52,6 +64,7 @@
     },
     "/students/{id}": {
       "get": {
+        "tags": ["Students"],
         "summary": "Get student by ID",
         "parameters": [
           {
@@ -73,6 +86,7 @@
         }
       },
       "put": {
+        "tags": ["Students"],
         "summary": "Update a student (requires GitHub login)",
         "parameters": [
           {
@@ -104,6 +118,7 @@
         }
       },
       "delete": {
+        "tags": ["Students"],
         "summary": "Delete a student (requires GitHub login)",
         "parameters": [
           {
@@ -127,6 +142,7 @@
     },
     "/subjects": {
       "get": {
+        "tags": ["Subjects"],
         "summary": "Get all subjects",
         "responses": {
           "200": {
@@ -135,6 +151,7 @@
         }
       },
       "post": {
+        "tags": ["Subjects"],
         "summary": "Create a subject (requires GitHub login)",
         "requestBody": {
           "required": true,
@@ -158,6 +175,7 @@
     },
     "/subjects/{id}": {
       "get": {
+        "tags": ["Subjects"],
         "summary": "Get subject by ID",
         "parameters": [
           {
@@ -179,6 +197,7 @@
         }
       },
       "put": {
+        "tags": ["Subjects"],
         "summary": "Update a subject (requires GitHub login)",
         "parameters": [
           {
@@ -210,6 +229,7 @@
         }
       },
       "delete": {
+        "tags": ["Subjects"],
         "summary": "Delete a subject (requires GitHub login)",
         "parameters": [
           {
