@@ -1,13 +1,17 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
-      dbName: 'crud-cse341'   // tell Mongoose which DB to use
+      dbName: 'crud-cse341'
     });
-    console.log('MongoDB connected successfully');
-  } catch (err) {
-    console.error('MongoDB connection error:', err.message);
+
+    console.log('Connected to MongoDB - crud-cse341');
+  } catch (error) {
+    console.error('MongoDB connection error:', error.message);
     process.exit(1);
   }
 };

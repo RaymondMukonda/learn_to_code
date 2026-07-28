@@ -1,0 +1,232 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "CRUD CSE341 Student API",
+    "version": "1.0.0",
+    "description": "API for managing students and subjects using Node.js, Express, MongoDB, and GitHub OAuth authentication."
+  },
+  "servers": [
+    {
+      "url": "https://crud-cse341.onrender.com",
+      "description": "Production server (Render)"
+    },
+    {
+      "url": "http://localhost:3000",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/students": {
+      "get": {
+        "summary": "Get all students",
+        "responses": {
+          "200": {
+            "description": "List of students"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a student (requires GitHub login)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Student"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Student created"
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Authentication required"
+          }
+        }
+      }
+    },
+    "/students/{id}": {
+      "get": {
+        "summary": "Get student by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Student found"
+          },
+          "404": {
+            "description": "Student not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a student (requires GitHub login)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Student"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Student updated"
+          },
+          "401": {
+            "description": "Authentication required"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a student (requires GitHub login)",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Student deleted"
+          },
+          "401": {
+            "description": "Authentication required"
+          }
+        }
+      }
+    },
+    "/subjects": {
+      "get": {
+        "summary": "Get all subjects",
+        "responses": {
+          "200": {
+            "description": "List of subjects"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a subject (requires GitHub login)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Subject"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Subject created"
+          },
+          "401": {
+            "description": "Authentication required"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Student": {
+        "type": "object",
+        "required": [
+          "firstName",
+          "lastName",
+          "studentNumber",
+          "email",
+          "age",
+          "course",
+          "yearLevel"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string","example": "Raymond"
+          },
+          "lastName": {
+            "type": "string","example": "Mukonda"
+          },
+          "studentNumber": {
+            "type": "string","example": "99"
+          },
+          "email": {
+            "type": "string","format": "email","example": "raymond@example.com"
+          },
+          "age": {
+            "type": "integer","example": 22
+          },
+          "course": {
+            "type": "string","example": "Software Engineering"
+          },
+          "yearLevel": {
+            "type": "integer","example": 3
+          },
+          "isRegistered": {
+            "type": "boolean","default": true
+          }
+        }
+      },
+      "Subject": {
+        "type": "object",
+        "required": [
+          "subjectCode",
+          "subjectName",
+          "credits",
+          "department",
+          "lecturer"
+        ],
+        "properties": {
+          "subjectCode": {
+            "type": "string","example": "CSE341"
+          },
+          "subjectName": {
+            "type": "string","example": "Web Services Development"
+          },
+          "credits": {
+            "type": "integer","example": 4
+          },
+          "department": {
+            "type": "string","example": "Software Engineering"
+          },
+          "lecturer": {
+            "type": "string","example": "Mr. Daniel Khumalo"
+          },
+          "isActive": {
+            "type": "boolean","default": true
+          }
+        }
+      }
+    }
+  }
+}

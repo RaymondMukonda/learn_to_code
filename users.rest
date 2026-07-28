@@ -1,45 +1,47 @@
-### Get all users
-GET http://localhost:3000/api/users
-Content-Type: application/json
-
-###
-
-### Create a new user
-POST http://localhost:3000/api/users
+### CREATE NEW STUDENT (SUCCESS)
+POST http://localhost:3000/students
 Content-Type: application/json
 
 {
-  "name": "Josh",
-  "email": "joshy@example.com",
-  "age": 21,
-  "role": "student"
-}
-
-
-
-### lets send a bad requst
-POST http://localhost:3000/api/users
-Content-Type: application/json
-
-{
-  "email": "not-an-email",
-  "age": -5
-}
-
-
-###
-
-### Update a user 
-PUT http://localhost:3000/api/users/6a5a3de45d6515c251832ef9
-Content-Type: application/json
-
-{
+  "firstName": "Raymond",
+  "lastName": "Mukonda",
+  "studentNumber": "99",
+  "email": "raymond.mukonda99@gmail.com",
   "age": 22,
-  "role": "developer"
+  "course": "Software Engineering",
+  "yearLevel": 3,
+  "isRegistered": true
 }
 
-###
-
-### Delete a user 
-DELETE http://localhost:3000/api/users/<id>
+### DUPLICATE EMAIL (ERROR)
+POST http://localhost:3000/students
 Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Tester",
+  "studentNumber": "100",
+  "email": "christ@gmail.com",
+  "age": 20,
+  "course": "Mathematics",
+  "yearLevel": 2,
+  "isRegistered": true
+}
+
+### DUPLICATE STUDENT NUMBER (ERROR)
+POST http://localhost:3000/students
+Content-Type: application/json
+
+{
+  "firstName": "Sarah",
+  "lastName": "Duplicate",
+  "studentNumber": "67",
+  "email": "sarah.duplicate@gmail.com",
+  "age": 21,
+  "course": "Computer Science",
+  "yearLevel": 3,
+  "isRegistered": true
+}
+
+### GET ALL STUDENTS
+GET http://localhost:3000/students
