@@ -9,6 +9,8 @@ import connectDB from './config/db.js';
 
 import studentRoutes from './routes/studentRoutes.js';
 import subjectRoutes from './routes/subjectRoutes.js';
+import teacherRoutes from './routes/teacherRoutes.js';
+import courseRoutes from './routes/courseRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 
 dotenv.config();
@@ -71,6 +73,8 @@ app.use('/auth', authRoutes);
 // API routes
 app.use('/students', studentRoutes);
 app.use('/subjects', subjectRoutes);
+app.use('/teachers', teacherRoutes);
+app.use('/courses', courseRoutes);
 
 // Handle unknown routes
 app.use((req, res) => {

@@ -3,11 +3,11 @@
   "info": {
     "title": "CRUD CSE341 Student API",
     "version": "1.0.0",
-    "description": "API for managing students and subjects using Node.js, Express, MongoDB, and GitHub OAuth authentication."
+    "description": "API for managing students, subjects, teachers, and courses using Node.js, Express, MongoDB, and GitHub OAuth authentication."
   },
   "servers": [
     {
-      "url": "https://crud-cse341.onrender.com",
+      "url": "https://learn-to-code-7h7m.onrender.com",
       "description": "Production server (Render)"
     },
     {
@@ -16,327 +16,54 @@
     }
   ],
   "tags": [
-    {
-      "name": "Students",
-      "description": "Operations related to students"
-    },
-    {
-      "name": "Subjects",
-      "description": "Operations related to subjects"
-    }
+    { "name": "Students", "description": "Operations related to students" },
+    { "name": "Subjects", "description": "Operations related to subjects" },
+    { "name": "Teachers", "description": "Operations related to teachers" },
+    { "name": "Courses", "description": "Operations related to courses" }
   ],
   "paths": {
     "/students": {
-      "get": {
-        "tags": ["Students"],
-        "summary": "Get all students",
-        "responses": {
-          "200": {
-            "description": "List of students"
-          }
-        }
-      },
+      "get": { "tags": ["Students"], "summary": "Get all students", "responses": { "200": { "description": "List of students" } } },
       "post": {
         "tags": ["Students"],
         "summary": "Create a student (requires GitHub login)",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Student"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Student created"
-          },
-          "400": {
-            "description": "Validation error"
-          },
-          "401": {
-            "description": "Authentication required"
-          }
-        }
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Student" } } } },
+        "responses": { "201": { "description": "Student created" }, "400": { "description": "Validation error" }, "401": { "description": "Authentication required" } }
       }
     },
     "/students/{id}": {
-      "get": {
-        "tags": ["Students"],
-        "summary": "Get student by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Student found"
-          },
-          "404": {
-            "description": "Student not found"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Students"],
-        "summary": "Update a student (requires GitHub login)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Student"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Student updated"
-          },
-          "401": {
-            "description": "Authentication required"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Students"],
-        "summary": "Delete a student (requires GitHub login)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Student deleted"
-          },
-          "401": {
-            "description": "Authentication required"
-          }
-        }
-      }
+      "get": { "tags": ["Students"], "summary": "Get student by ID", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Student found" }, "404": { "description": "Student not found" } } },
+      "put": { "tags": ["Students"], "summary": "Update a student (requires GitHub login)", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Student" } } } }, "responses": { "200": { "description": "Student updated" }, "401": { "description": "Authentication required" } } },
+      "delete": { "tags": ["Students"], "summary": "Delete a student (requires GitHub login)", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Student deleted" }, "401": { "description": "Authentication required" } } }
     },
     "/subjects": {
-      "get": {
-        "tags": ["Subjects"],
-        "summary": "Get all subjects",
-        "responses": {
-          "200": {
-            "description": "List of subjects"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Subjects"],
-        "summary": "Create a subject (requires GitHub login)",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Subject"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Subject created"
-          },
-          "401": {
-            "description": "Authentication required"
-          }
-        }
-      }
+      "get": { "tags": ["Subjects"], "summary": "Get all subjects", "responses": { "200": { "description": "List of subjects" } } },
+      "post": { "tags": ["Subjects"], "summary": "Create a subject (requires GitHub login)", "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Subject" } } } }, "responses": { "201": { "description": "Subject created" }, "401": { "description": "Authentication required" } } }
     },
     "/subjects/{id}": {
-      "get": {
-        "tags": ["Subjects"],
-        "summary": "Get subject by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Subject found"
-          },
-          "404": {
-            "description": "Subject not found"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Subjects"],
-        "summary": "Update a subject (requires GitHub login)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Subject"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Subject updated"
-          },
-          "401": {
-            "description": "Authentication required"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Subjects"],
-        "summary": "Delete a subject (requires GitHub login)",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Subject deleted"
-          },
-          "401": {
-            "description": "Authentication required"
-          }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "Student": {
-        "type": "object",
-        "required": [
-          "firstName",
-          "lastName",
-          "studentNumber",
-          "email",
-          "age",
-          "course",
-          "yearLevel"
-        ],
-        "properties": {
-          "firstName": {
-            "type": "string",
-            "example": "Raymond"
-          },
-          "lastName": {
-            "type": "string",
-            "example": "Mukonda"
-          },
-          "studentNumber": {
-            "type": "string",
-            "example": "99"
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "example": "raymond@example.com"
-          },
-          "age": {
-            "type": "integer",
-            "example": 22
-          },
-          "course": {
-            "type": "string",
-            "example": "Software Engineering"
-          },
-          "yearLevel": {
-            "type": "integer",
-            "example": 3
-          },
-          "isRegistered": {
-            "type": "boolean",
-            "default": true
-          }
-        }
-      },
-      "Subject": {
-        "type": "object",
-        "required": [
-          "subjectCode",
-          "subjectName",
-          "credits",
-          "department",
-          "lecturer"
-        ],
-        "properties": {
-          "subjectCode": {
-            "type": "string",
-            "example": "CSE341"
-          },
-          "subjectName": {
-            "type": "string",
-            "example": "Web Services Development"
-          },
-          "credits": {
-            "type": "integer",
-            "example": 4
-          },
-          "department": {
-            "type": "string",
-            "example": "Software Engineering"
-          },
-          "lecturer": {
-            "type": "string",
-            "example": "Mr. Daniel Khumalo"
-          },
-          "isActive": {
-            "type": "boolean",
-            "default": true
-          }
-        }
-      }
-    }
+      "get": { "tags": ["Subjects"], "summary": "Get subject by ID", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Subject found" }, "404": { "description": "Subject not found" } } },
+      "put": { "tags": ["Subjects"], "summary": "Update a subject (requires GitHub login)", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Subject" } } } }, "responses": { "200": { "description": "Subject updated" }, "401": { "description": "Authentication required" } } },
+      "delete": { "tags": ["Subjects"], "summary": "Delete a subject (requires GitHub login)", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Subject deleted" }, "401": { "description": "Authentication required" } } }
+    },
+    "/teachers": {
+      "get": { "tags": ["Teachers"], "summary": "Get all teachers", "responses": { "200": { "description": "List of teachers" } } },
+      "post": { "tags": ["Teachers"], "summary": "Create a teacher (requires GitHub login)", "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Teacher" } } } }, "responses": { "201": { "description": "Teacher created" }, "401": { "description": "Authentication required" } } }
+    },
+    "/teachers/{id}": {
+      "get": { "tags": ["Teachers"], "summary": "Get teacher by ID", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Teacher found" }, "404": { "description": "Teacher not found" } } },
+      "put": { "tags": ["Teachers"], "summary": "Update a teacher (requires GitHub login)", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Teacher" } } } }, "responses": { "200": { "description": "Teacher updated" }, "401": { "description": "Authentication required" } } },
+      "delete": { "tags": ["Teachers"], "summary": "Delete a teacher (requires GitHub login)", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Teacher deleted" }, "401": { "description": "Authentication required" } } }
+    },
+    "/courses": {
+      "get": { "tags": ["Courses"], "summary": "Get all courses", "responses": { "200": { "description": "List of courses" } } },
+      "post": { "tags": ["Courses"], "summary": "Create a course (requires GitHub login)", "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Course" } } } }, "responses": { "201": { "description": "Course created" }, "401": { "description": "Authentication required" } } }
+    },
+    "/courses/{id}": {
+      "get": { "tags": ["Courses"], "summary": "Get course by ID", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Course found" }, "404": { "description": "Course not found" } } },
+      "put": { "tags": ["Courses"], "summary": "Update a course (requires GitHub login)", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Course" } } } }, "responses": { "200": { "description": "Course updated" }, "401": { "description": "Authentication required" } } },
+      "delete": { "tags": ["Courses"], "summary": "Delete a course (requires GitHub login)", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Teacher deleted" }, "401": { "description": "Authentication required" } } } }
+
+      
   }
 }
+    
