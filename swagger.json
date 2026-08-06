@@ -61,9 +61,6 @@
     "/courses/{id}": {
       "get": { "tags": ["Courses"], "summary": "Get course by ID", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Course found" }, "404": { "description": "Course not found" } } },
       "put": { "tags": ["Courses"], "summary": "Update a course (requires GitHub login)", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Course" } } } }, "responses": { "200": { "description": "Course updated" }, "401": { "description": "Authentication required" } } },
-      "delete": { "tags": ["Courses"], "summary": "Delete a course (requires GitHub login)", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Teacher deleted" }, "401": { "description": "Authentication required" } } } }
-
-      
-  }
-}
+      "delete": { "tags": ["Courses"], "summary": "Delete a course (requires GitHub login)", "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }], "responses": { "200": { "description": "Course deleted" }, "401": { "description": "Authentication required" } } } 
     
+} } }
