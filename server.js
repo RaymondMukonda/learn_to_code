@@ -12,6 +12,7 @@ import subjectRoutes from './routes/subjectRoutes.js';
 import teacherRoutes from './routes/teacherRoutes.js';
 import courseRoutes from './routes/courseRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import setupSwagger from './swagger.js'; 
 
 dotenv.config();
 
@@ -42,19 +43,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Load Swagger JSON
-const swaggerDocument = JSON.parse(fs.readFileSync('./swagger.json', 'utf8'));
-
-// Swagger route
-app.use(
-  '/api-docs',
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerDocument, {
-    swaggerOptions: {
-      defaultModelsExpandDepth: -1,
-      withCredentials: true
-    }
-  })
-);
+setupSwagger(app);
 
 // Root route
 app.get('/', (req, res) => {
